@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/ctrl/ok" method="post">
+    <button>OK</button>
+    <button formmethod="get">OK2</button>
+    <button formaction="/ctrl/ok?x">OK3</button>
+</form>
+<h2 th:text="${message}">?</h2>
+</body>
+</html>

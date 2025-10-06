@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html th:fragment="view(title, content)"  xmlns:th="http://www.thymeleaf.org"><head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <h1 th:text="#{header.name}">Online Shopping</h1>
+</header>
+
+<nav th:replace="~{/Shared/Menu}">
+    Menu
+</nav>
+
+<article th:replace="${content}">
+    Content
+</article>
+
+<footer>
+    <hr>
+    <p th:text="#{footer.copy}">Footer</p>
+</footer>
+</body>
+</html>

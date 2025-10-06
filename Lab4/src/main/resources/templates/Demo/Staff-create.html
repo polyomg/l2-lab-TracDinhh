@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <i th:text="${message}"></i>
+    <form  th:object="${staff}" action="/staff/create/save" method="post"  enctype="multipart/form-data">
+        Email: <input th:field="*{id}"><hr>
+
+        Ho va ten: <input th:field="*{fullname}"><hr>
+
+        Gioi tinh:
+        <input type="radio" th:field="*{gender}" value="true">Nam
+        <input type="radio" th:field="*{gender}" value="false">Nu <hr>
+
+        Ngay sinh: <input th:field="*{birthday}"><hr>
+
+        Luong: <input th:field="*{salary}"><hr>
+
+        Cap bac:
+        <select th:field="*{level}">
+            <option value="0">Nhan vien</option>
+            <option value="1">Quan ly</option>
+            <option value="2">Giam doc</option>
+        </select><hr>
+
+        Anh:  <input name="photo_file"type="file"/><hr>
+
+        <button type="submit">Save</button>
+    </form>
+
+</body>
+</html>
