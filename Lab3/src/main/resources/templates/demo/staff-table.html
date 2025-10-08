@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>List Status</title>
+</head>
+<body>
+<h2>Thông tin trạng thái phần tử</h2>
+
+<table border="1" style="width:100%; text-align:center">
+    <thead>
+    <tr>
+        <th rowspan="2">HỌ VÀ TÊN</th>
+        <th colspan="6">CÁC THUỘC TÍNH TRẠNG THÁI</th>
+    </tr>
+    <tr>
+        <th>Index</th>
+        <th>Count</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Odd</th>
+        <th>Even</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="staff, st : ${list}">
+        <tr th:style="@{|background-color:${st.odd?'pink':'cyan'}|}">
+            <td th:text="${#strings.capitalizeWords(staff.fullname)}"></td>
+<!--            index se chay tu so 0 truoc-->
+            <td th:text="${st.index}"></td>
+<!--            so thu tu bat dau tu so 1-->
+            <td th:text="${st.count}"></td>
+<!--            xem cai user do co phai la so dau tien ko dung thi true va nguoc lai-->
+            <td th:text="${st.first}"></td>
+<!--            xem cai user do co phai la so cuoi ko dung thi true va nguoc lai-->
+            <td th:text="${st.last}"></td>
+<!--            xem user dola so chan hay le odd la le thi true-->
+            <td th:text="${st.odd}"></td>
+<!--            xem user do la so chan hay le even la chan thi true-->
+            <td th:text="${st.even}"></td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+
+</body>
+</html>

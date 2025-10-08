@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff Validate</title>
+</head>
+<body>
+
+<h3 th:text="${message}"></h3>
+
+<form th:object="${staff}" action="/staff/create/save2" method="post" enctype="multipart/form-data">
+    Email: <input th:field="*{id}"/> <i th:errors="*{id}"></i><hr>
+
+    Họ và tên: <input th:field="*{fullname}"/> <i th:errors="*{fullname}"></i><hr>
+
+    Giới tính:
+    <input type="radio" th:field="*{gender}" value="true"> Nam
+    <input type="radio" th:field="*{gender}" value="false"> Nữ
+    <i th:errors="*{gender}"></i><hr>
+
+    Ngày sinh: <input th:field="*{birthday}" placeholder="MM/dd/yyyy"/>
+    <i th:errors="*{birthday}"></i><hr>
+
+    Lương: <input th:field="*{salary}"/>
+    <i th:errors="*{salary}"></i><hr>
+
+    Cấp bậc:
+    <select th:field="*{level}">
+        <option value="0">Nhân viên</option>
+        <option value="1">Quản lý</option>
+        <option value="2">Giám đốc</option>
+    </select><hr>
+
+    Ảnh: <input name="photo_file" type="file"><hr>
+
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>
