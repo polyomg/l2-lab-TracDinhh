@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm kiếm sản phẩm (DSL)</title>
+</head>
+<body>
+<h2>Tìm kiếm sản phẩm (DSL)</h2>
+
+<form action="/product/search-and-page-dsl" method="post">
+    <input name="keywords" th:value="${keywords}" placeholder="Nhập tên sản phẩm">
+    <button>Tìm</button>
+</form>
+
+<table border="1" width="100%">
+    <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Giá</th>
+        <th>Ngày tạo</th>
+    </tr>
+    <th:block th:each="item : ${page.content}">
+        <tr>
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${item.createDate}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<div>
+    <a th:href="@{|/product/search-and-page-dsl?p=0|}">First</a>
+    <a th:href="@{|/product/search-and-page-dsl?p=${page.number - 1}|}">Previous</a>
+    <a th:href="@{|/product/search-and-page-dsl?p=${page.number + 1}|}">Next</a>
+    <a th:href="@{|/product/search-and-page-dsl?p=${page.totalPages - 1}|}">Last</a>
+</div>
+
+<ul>
+    <li>Số sản phẩm hiện tại: [[${page.numberOfElements}]]</li>
+    <li>Trang số: [[${page.number}]]</li>
+    <li>Tổng số sản phẩm: [[${page.totalElements}]]</li>
+    <li>Tổng số trang: [[${page.totalPages}]]</li>
+</ul>
+
+</body>
+</html>
