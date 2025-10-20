@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagination</title>
+</head>
+<body>
+<h2 style="text-align:center">PAGINATION</h2>
+
+<table border="1" width="100%" style="text-align:center;">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Date</th>
+    </tr>
+<!--    Còn thuộc tính content là một List<Products> được Hibernate trả về-->
+<!--    sau khi thực hiện truy vấn dữ liệu của trang tương ứng.-->
+    <tr th:each="p : ${page.content}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.price}"></td>
+        <td th:text="${p.createDate}"></td>
+    </tr>
+</table>
+
+<br>
+
+<!-- Liên kết phân trang -->
+<div style="text-align:center">
+    <a th:href="@{/product/page(p=0)}">First</a>
+    <a th:href="@{/product/page(p=${page.number - 1})}">Previous</a>
+    <a th:href="@{/product/page(p=${page.number + 1})}">Next</a>
+    <a th:href="@{/product/page(p=${page.totalPages - 1})}">Last</a>
+</div>
+
+<br>
+
+<!-- Thông tin phân trang -->
+<div style="margin-left:50px">
+    <p>Số thực thể hiện tại: <span th:text="${page.numberOfElements}"></span></p>
+    <p>Trang số: <span th:text="${page.number}"></span></p>
+    <p>Kích thước trang: <span th:text="${page.size}"></span></p>
+    <p>Tổng số thực thể: <span th:text="${page.totalElements}"></span></p>
+    <p>Tổng số trang: <span th:text="${page.totalPages}"></span></p>
+</div>
+</body>
+</html>
