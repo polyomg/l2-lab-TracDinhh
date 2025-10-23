@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Mail</title>
+</head>
+<body>
+<h2>Send Mail</h2>
+<form th:action="@{/mail/send}" method="post" enctype="multipart/form-data">
+    <label>From:</label><br/>
+    <input type="text" name="from" /><br/><br/>
+
+    <label>To:</label><br/>
+    <input type="text" name="to" required/><br/><br/>
+
+    <label>Cc:</label><br/>
+    <input type="text" name="cc"/><br/><br/>
+
+    <label>Bcc:</label><br/>
+    <input type="text" name="bcc"/><br/><br/>
+
+    <label>Subject:</label><br/>
+    <input type="text" name="subject"/><br/><br/>
+
+    <label>Body:</label><br/>
+    <textarea name="body" rows="8" cols="60"></textarea><br/><br/>
+
+    <label>Attachments:</label><br/>
+    <input type="file" name="attachments" multiple/><br/><br/>
+
+    <label>Mode:</label><br/>
+    <input type="radio" name="mode" value="send" checked/> Gửi trực tiếp
+    <input type="radio" name="mode" value="queue"/> Xếp vào hàng đợi<br/><br/>
+
+    <button type="submit">Send</button>
+</form>
+
+<p th:text="${message}"></p>
+</body>
+</html>
