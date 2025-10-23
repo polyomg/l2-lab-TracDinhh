@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<hr>
+<nav>
+    <!-- Liên kết menu (sử dụng i18n key từ file layout_xx.properties) -->
+    <a th:href="@{/home/index}" th:text="#{menu.home}">Trang chủ</a> |
+    <a th:href="@{/home/about}" th:text="#{menu.about}">Giới thiệu</a>
+
+    <!-- Góc phải: chọn ngôn ngữ -->
+    <div style="position: fixed; top: 5px; right: 5px;">
+        <a th:href="@{/home/index(lang='vi')}">Tiếng Việt</a> |
+        <a th:href="@{/home/index(lang='en')}">English</a>
+    </div>
+</nav>
+<hr>

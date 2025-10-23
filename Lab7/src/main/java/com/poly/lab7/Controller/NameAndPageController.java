@@ -1,0 +1,49 @@
+package com.poly.lab7.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import poly.edu.Lab7.Entity.Product;
+import poly.edu.Lab7.Jpa.ProductDAO;
+import poly.edu.Lab7.Service.SessionService;
+
+import java.util.Optional;
+
+@Controller
+public class NameAndPageController {
+    @Autowired
+    ProductDAO dao;
+
+    @Autowired
+    SessionService session;
+
+    @RequestMapping("/product/search-and-page")
+    public String search(Model model,
+                         @RequestParam("keywords")Optional<String>kw,
+                         @RequestParam("p") Optional<Integer> p){
+
+        String kwords = kw.orElse(session.get("keywords", ""));
+
+        // Lưu vào session
+        session.set("keywords", kwords);
+
+//        int currentPage = p.orElse(0);
+//        if (currentPage < 0) {
+//            currentPage = 0;
+//        }
+//        Pageable pageable = PageRequest.of(currentPage, 5);
+
+        Pageable pageable = PageRequest.of(p.orElse(0), 5);
+
+        Page<Product> page = dao.findByKeywords("%" + kwords + "%", pageable);
+
+        model.addAttribute("page", page);
+        model.addAttribute("keywords", kwords);
+        return"product/search-and-page";
+    }
+}

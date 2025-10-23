@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login Form</h2>
+    <form action="/login/check" method="post">
+        <label>Username</label><br>
+        <input type="text" name="username" placeholder="Username"><br>
+        <label>Password</label><br>
+        <input type="text" name="password" placeholder="Password"><br>
+        <button type="submit">Login</button>
+    </form>
+<p><strong th:text="${message}"></strong></p><br>
+    <p><strong th:text="${sucess}"></strong></p><br>
+
+
+</body>
+</html>
